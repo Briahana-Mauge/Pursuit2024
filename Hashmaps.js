@@ -57,3 +57,51 @@ let nums3 = [1,1,1,3,3,4,3,2,4,2];
 console.log(containsDuplicate(nums1));
 console.log(containsDuplicate(nums2));
 console.log(containsDuplicate(nums3));
+
+
+/*Question 2: Two Sum
+Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
+
+You may assume that each input would have exactly one solution, and you may not use the same element twice.
+
+You can return the answer in any order.
+
+ 
+
+Example 1:
+
+Input: nums = [2,7,11,15], target = 9
+Output: [0,1]
+Explanation: Because nums[0] + nums[1] == 9, we return [0, 1].
+Example 2:
+
+Input: nums = [3,2,4], target = 6
+Output: [1,2]
+Example 3:
+
+Input: nums = [3,3], target = 6
+Output: [0,1]
+*/
+// Constant Time Solution
+var twoSum = function (nums, target) {
+    let newMap = new Map();
+    let returnArr = []
+    for (let i = 0; i < nums.length; i++) {
+        let difference = target - nums[i];
+        if (newMap.has(difference)) {
+            return [i, newMap.get(difference)]
+        } else {
+            newMap.set(nums[i], i)
+        }
+    }
+};
+
+let nums4 = [2,7,11,15];
+let target4 = 9;
+let nums5 = [3,2,4];
+let target5 = 6;
+let nums6 = [3,3];
+let target6 = 6;
+console.log(twoSum(nums4, target4));
+console.log(twoSum(nums5, target5));
+console.log(twoSum(nums6, target6));
