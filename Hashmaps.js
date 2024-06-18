@@ -38,7 +38,7 @@ Example 3:
 Input: nums = [1,1,1,3,3,4,3,2,4,2]
 Output: true
 */
-// Constant Time Solution
+// Linear Time Solution O(n)
 var containsDuplicate = function (nums) {
     let newMap = new Map();
     for (let i = 0; i < nums.length; i++) {
@@ -82,10 +82,9 @@ Example 3:
 Input: nums = [3,3], target = 6
 Output: [0,1]
 */
-// Constant Time Solution
+// Linear Time Solution O(n)
 var twoSum = function (nums, target) {
     let newMap = new Map();
-    let returnArr = []
     for (let i = 0; i < nums.length; i++) {
         let difference = target - nums[i];
         if (newMap.has(difference)) {
