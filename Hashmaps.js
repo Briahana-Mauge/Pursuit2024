@@ -51,12 +51,12 @@ var containsDuplicate = function (nums) {
     return false;
 };
 
-let nums1 = [1,2,3,1];
-let nums2 = [1,2,3,4];
-let nums3 = [1,1,1,3,3,4,3,2,4,2];
-console.log(containsDuplicate(nums1));
-console.log(containsDuplicate(nums2));
-console.log(containsDuplicate(nums3));
+let nums1 = [1, 2, 3, 1];
+let nums2 = [1, 2, 3, 4];
+let nums3 = [1, 1, 1, 3, 3, 4, 3, 2, 4, 2];
+console.log(containsDuplicate(nums1)); // true
+console.log(containsDuplicate(nums2)); // false
+console.log(containsDuplicate(nums3)); // true
 
 
 /*Question 2: Two Sum
@@ -95,12 +95,111 @@ var twoSum = function (nums, target) {
     }
 };
 
-let nums4 = [2,7,11,15];
+let nums4 = [2, 7, 11, 15];
 let target4 = 9;
-let nums5 = [3,2,4];
+let nums5 = [3, 2, 4];
 let target5 = 6;
-let nums6 = [3,3];
+let nums6 = [3, 3];
 let target6 = 6;
-console.log(twoSum(nums4, target4));
-console.log(twoSum(nums5, target5));
-console.log(twoSum(nums6, target6));
+console.log(twoSum(nums4, target4)); // [0,1] or [1,0]
+console.log(twoSum(nums5, target5)); // [2,1] of [1,2]
+console.log(twoSum(nums6, target6)); // [1,0] or [0,1]
+
+//169. Majority Element - LEET CODE
+
+// Given an array nums of size n, return the majority element.
+
+// The majority element is the element that appears more than ⌊n / 2⌋ times. You may assume that the majority element always exists in the array.
+
+// Example 1:
+
+// Input: nums = [3,2,3]
+// Output: 3
+// Example 2:
+
+// Input: nums = [2,2,1,1,1,2,2]
+// Output: 2
+
+
+// Constraints:
+// n == nums.length
+// 1 <= n <= 5 * 104
+// -109 <= nums[i] <= 109
+
+var majorityElement = function (nums) {
+    const minAmt = nums.length / 2
+    let newMap = new Map()
+
+    for (let i = 0; i < nums.length; i++) {
+        if (!newMap.has(nums[i])) {
+            newMap.set(nums[i], 1)
+        }
+        else {
+            newMap.set(nums[i], newMap.get(nums[i]) + 1)
+        }
+    }
+
+    for (let [key, val] of newMap) {
+        if (val > minAmt) {
+            return key
+        }
+    }
+};
+
+let nums7 = [3, 2, 3]
+let nums8 = [2, 2, 1, 1, 1, 2, 2]
+let nums9 = [10, 9, 9, 9, 10]
+console.log(majorityElement(nums7)) // 3
+console.log(majorityElement(nums8)) // 2
+console.log(majorityElement(nums9)) // 9
+
+
+
+// 219. Contains Duplicate II - LEET CODE
+// Given an integer array nums and an integer k, return true if there are two distinct indices i and j in the array such that nums[i] == nums[j] and abs(i - j) <= k.
+
+// Example 1:
+
+// Input: nums = [1,2,3,1], k = 3
+// Output: true
+// Example 2:
+
+// Input: nums = [1,0,1,1], k = 1
+// Output: true
+// Example 3:
+
+// Input: nums = [1,2,3,1,2,3], k = 2
+// Output: false
+
+
+// Constraints:
+// 1 <= nums.length <= 105
+// -109 <= nums[i] <= 109
+// 0 <= k <= 105
+
+var containsNearbyDuplicate = function (nums, k) {
+    let newMap = new Map();
+    for (let i = 0; i < nums.length; i++) {
+        if (newMap.has(nums[i])) {
+            if (Math.abs(newMap.get(nums[i]) - i) <= k) {
+                return true
+            } else {
+                newMap.set(nums[i], i)
+            }
+        }
+        else {
+            newMap.set(nums[i], i)
+        }
+    }
+    return false
+};
+
+let nums10 = [1, 2, 3, 1]
+let k10 = 3
+let nums11 = [1, 0, 1, 1]
+let k11 = 1 
+let nums12 = [1, 2, 3, 1, 2, 3]
+let k12 = 2 
+console.log(containsNearbyDuplicate(nums10, k10)) // true
+console.log(containsNearbyDuplicate(nums11, k11)) // true
+console.log(containsNearbyDuplicate(nums12, k12)) // false
