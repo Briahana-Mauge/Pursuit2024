@@ -1,10 +1,15 @@
 /*What is a hashmap?
  we use hashing to create indexes and then map it so we can uickly locate the values using keys
 time complecity: it has constant lookup time
+
 imagine theres 1000 numbers but the size range is 0-30. How can I indexes the numbers.
 example:
 1000 % 30 = 10 and every time you imput the number 1000, you'll get the hashmap index for 10
  */
+
+//How a hashmap differs from a a set:
+// Set: stores unique values (check if something exsits or remove duplicates)
+// Map: stores key value pairs
 
 /*Map functions in Javascript:
 Map.clear() - removes all elements from the map
